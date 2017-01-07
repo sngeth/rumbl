@@ -10,7 +10,7 @@ defmodule Rumbl.VideoController do
     render(conn, "index.html", videos: videos)
   end
 
-  def new(conn, _params) do
+  def new(conn, _params, _user) do
     changeset = conn.assigns.current_user
                 |> build_assoc(:videos)
                 |> Video.changeset()
