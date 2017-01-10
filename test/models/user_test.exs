@@ -26,8 +26,8 @@ defmodule Rumbl.UserTest do
     attrs = Map.put(@valid_attrs, :password, "12345")
     changeset = User.registration_changeset(%User{}, attrs)
 
-    assert [password: {"should be at least %{count} character(s)",
-        [count: 6, validation: :length, min: 6]}] == changeset.errors
+    assert password: {"should be at least %{count} character(s)",
+        [count: 6, validation: :length, min: 6]} in changeset.errors
   end
 
   test "registration_changeset with valid attributes hashes password" do
