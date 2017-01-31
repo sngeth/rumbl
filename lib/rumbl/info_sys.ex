@@ -2,7 +2,7 @@ defmodule Rumbl.InfoSys do
   @backends [Rumbl.InfoSys.Wolfram]
 
   defmodule Result do
-    defstruct score: 0, text: nil, url: nil, backemd: nil
+    defstruct score: 0, text: nil, url: nil, backend: nil
   end
 
   def start_link(backend, query, query_ref, owner, limit) do
@@ -11,7 +11,7 @@ defmodule Rumbl.InfoSys do
 
   def compute(query, opts \\ []) do
     limit = opts[:limit] || 10
-    backend = opts[:backends] || @backends
+    backends = opts[:backends] || @backends
 
     backends
     |> Enum.map(&spawn_query(&1, query, limit))
